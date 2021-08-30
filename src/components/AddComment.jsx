@@ -7,11 +7,23 @@ class AddComment extends Component {
         comment: {
             comment: '',
             rate: 1,
-            elementId: this.props.asin
+            elementId: null
         }
     }
 
-    funcionComment = async (e) => {
+    componentDidUpdate(prevProps) {
+        if (prevProps.asin !== this.props.asin) {
+            this.setState({
+                comment: {
+                    ...this.state.comment,
+                    elementId: this.props.asin
+                }
+            })
+        }
+    }
+
+
+    sendComment = async (e) => {
         e.preventDefault()
         try {
             let response = await fetch('https://striveschool-api.herokuapp.com/api/comments', {
@@ -36,7 +48,7 @@ class AddComment extends Component {
     render() {
         return (
             <div>
-                <Form onSubmit={this.functionComment}>
+                <Form onSubmit={this.sendComment}>
                     <Form.Group>
                         <Form.Label>Comment here</Form.Label>
                         <Form.Control

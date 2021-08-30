@@ -6,7 +6,8 @@ import CommentArea from './CommentArea'
 class BookList extends React.Component {
 
     state = {
-        searchQuery: ''
+        searchQuery: '',
+        changeSelectedBook: null
     }
 
     render() {
@@ -16,7 +17,7 @@ class BookList extends React.Component {
                     <Col md={8}>
                         <Row>
                             <Col>
-                                <Form.Group controlId="formBasicEmail">
+                                <Form.Group>
                                     <Form.Label>Search</Form.Label>
                                         <Form.Control
                                         type="text"
@@ -34,7 +35,7 @@ class BookList extends React.Component {
                                         <SingleBook
                                             book={b}
                                             selectedBook={this.state.selectedBook}
-                                            changeSelectedBook={asin => this.setState({
+                                            changeSelBook={(asin) => this.setState({
                                                 selectedBook: asin
                                             })} />
                                     </Col>
